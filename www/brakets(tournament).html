@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title> life couter</title>
+		<script src= "../js/libs/jqurey/jquery.js"></script>
+		<script src="../js/place(app).js"></script>
+		<script src="../js/libs/other/setHealth.js"></script>
+		<script src="../js/libs/other/setData.js"></script>
+		<script src="../js/libs/other/isObject.js"></script>
+		<script src="../js/libs/other/intSetHealth.js"></script>
+		<script src="../js/libs/other/setDefalts.js"></script>
+		<script>
+			var contaner = $("#contaner");
+			var you;
+			var oponnent;
+			var p1output = $("#1output");
+			var p2output = $("#2output");
+			$(document).ready(function(){
+				
+				$("#nameBtn").click(function(){
+					setDefalts();
+					console.log("test");
+				});
+				if(!isObject(you)) {
+					you = setData("#yourName","your name","#damigep1",you);
+					
+					
+					if(isObject(you)){
+						console.log("your name is ", you.name, " your pid is ", you.pid);
+					}
+				}
+				/*
+				if you is not object than set it to an object 
+				append the object to the contaner
+				*/
+				if(!isObject(oponnent)){
+					oponnent = setData("#oppName","oponnent's name","#damigep2",oponnent);
+					
+					console.log(oponnent);
+				}
+				/*
+				if oponnent is not object than set it to an object 
+				append it to the contaner
+				*/
+				$("#startGame").click(function(){
+					/*
+						*el1, el2, oEl1, oEl2, p1, p2,  startingHp
+					*/
+					startGame("#damigep1", "#damigep2", "#1output","#2output", you, oponnent, 20);
+					
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id = "contaner">
+			<form id = "name">
+			<input type ="button" id ="nameBtn" value="defalts" >
+			</form>
+			<input type="button" value="start game" id = "startGame">
+			<form>
+				
+				<input type="number" id = "damigep1" value = 0><p style="display:inline-block">damige delt <b>to</b> you this turn</p>
+				<br>
+				<input type="number" id = "damigep2" value = 0><p style="display:inline-block">damige delt <b> by </b>you this turn</p>
+				<br>
+				<p>hit the "t" button to pass turn <br> use a negitve number to denote life gain</p>
+			</form>
+			<p id = "1output"></p>
+			<p id = "2output"></p>
+		</div>
+	</body>
+</html>
